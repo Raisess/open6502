@@ -11,16 +11,19 @@ public:
   Stack(const std::shared_ptr<DataBus>&);
   ~Stack();
 
+  void reset();
+
   // Return 1 if fail
   uint8_t push(uint8_t value);
   void pop();
-  uint8_t get(uint16_t addr) const;
+  uint8_t get() const;
 
 private:
   static uint16_t StartAddr;
   static uint16_t EndAddr;
-  uint16_t index = Stack::StartAddr;
+
   std::shared_ptr<DataBus> data_bus = nullptr;
+  uint16_t index;
 };
 
 }

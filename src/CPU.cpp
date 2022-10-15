@@ -15,6 +15,7 @@ void Open6502::CPU::reset() {
   this->x = 0x00;
   this->y = 0x00;
   this->data_bus->reset();
+  this->stack.reset();
 }
 
 Open6502::CPU::Status Open6502::CPU::get_status() const {
