@@ -17,27 +17,3 @@ void Open6502::CPU::reset() {
   this->x = 0x00;
   this->y = 0x00;
 }
-
-Open6502::CPU::Status Open6502::CPU::get_status() const {
-  return this->status;
-}
-
-uint16_t Open6502::CPU::get_program_counter() const {
-  return this->program_counter;
-}
-
-uint8_t Open6502::CPU::get_stack_pointer() const {
-  return this->stack_pointer;
-}
-
-uint8_t Open6502::CPU::get_accumulator() const {
-  return this->accumulator;
-}
-
-uint8_t Open6502::CPU::get_x() const {
-  return this->x;
-}
-
-uint8_t Open6502::CPU::get_y() const {
-  return this->y;
-}
