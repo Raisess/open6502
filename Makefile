@@ -15,5 +15,10 @@ build:
 run:
 	$(OUT)
 
+fun:
+	make clean
+	make build
+	make run
+
 clean:
 	rm -rf $(OUT_DIR)
