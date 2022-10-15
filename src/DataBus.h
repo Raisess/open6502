@@ -12,6 +12,8 @@ public:
   DataBus();
   ~DataBus();
 
+  void reset();
+
   void write(uint16_t addr, uint8_t value);
   uint8_t read(uint16_t addr) const;
 
