@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "DataBus.h"
+#include "Stack.h"
 
 namespace Open6502 {
 
@@ -17,11 +18,11 @@ public:
     NEGATIVE = 0b01000000,
   };
 
-  uint8_t accumulator = 0x00;
-  uint8_t x = 0x00;
-  uint8_t y = 0x00;
+  uint8_t accumulator;
+  uint8_t x;
+  uint8_t y;
 
-  CPU(const std::shared_ptr<DataBus>& data_bus);
+  CPU(const std::shared_ptr<DataBus>&);
   ~CPU();
 
   void reset();
@@ -32,9 +33,10 @@ public:
 
 private:
   std::shared_ptr<DataBus> data_bus = nullptr;
-  Status status = Status::ZERO;
-  uint16_t program_counter = 0x0000;
-  uint8_t stack_pointer = 0x00;
+  Stack stack;
+  Status status;
+  uint16_t program_counter;
+  uint8_t stack_pointer;
 };
 
 }

@@ -1,8 +1,6 @@
 #include "DataBus.h"
 
-Open6502::DataBus::DataBus() {
-  this->reset();
-}
+Open6502::DataBus::DataBus() {}
 
 Open6502::DataBus::~DataBus() {}
 
