@@ -18,10 +18,6 @@ public:
     NEGATIVE = 0b01000000,
   };
 
-  uint8_t accumulator;
-  uint8_t x;
-  uint8_t y;
-
   CPU(const std::shared_ptr<DataBus>&);
   ~CPU();
 
@@ -30,13 +26,20 @@ public:
   Status get_status() const;
   uint16_t get_program_counter() const;
   uint8_t get_stack_pointer() const;
+  uint8_t get_accumulator() const;
+  uint8_t get_x() const;
+  uint8_t get_y() const;
 
 private:
   std::shared_ptr<DataBus> data_bus = nullptr;
   Stack stack;
+
   Status status;
   uint16_t program_counter;
   uint8_t stack_pointer;
+  uint8_t accumulator;
+  uint8_t x;
+  uint8_t y;
 };
 
 }

@@ -29,3 +29,15 @@ uint16_t Open6502::CPU::get_program_counter() const {
 uint8_t Open6502::CPU::get_stack_pointer() const {
   return this->stack_pointer;
 }
+
+uint8_t Open6502::CPU::get_accumulator() const {
+  return this->accumulator;
+}
+
+uint8_t Open6502::CPU::get_x() const {
+  return this->x;
+}
+
+uint8_t Open6502::CPU::get_y() const {
+  return this->y;
+}
