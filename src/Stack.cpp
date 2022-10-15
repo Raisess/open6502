@@ -27,8 +27,9 @@ uint8_t Open6502::Stack::push(uint8_t value) {
 
 void Open6502::Stack::pop() {
   this->data_bus->write(std::max(static_cast<int>(Stack::StartAddr), this->index - 1), 0x00);
+  this->index--;
 }
 
 uint8_t Open6502::Stack::get() const {
-  return this->data_bus->read(this->index);
+  return this->data_bus->read(this->index - 1);
 }
