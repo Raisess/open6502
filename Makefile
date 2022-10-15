@@ -3,6 +3,7 @@ CXX=g++
 SRC_DIR=./src
 SRC=$(SRC_DIR)/main.cpp \
 		$(SRC_DIR)/CPU.cpp \
+		$(SRC_DIR)/Stack.cpp \
 		$(SRC_DIR)/DataBus.cpp
 
 OUT_DIR=./build
