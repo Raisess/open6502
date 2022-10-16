@@ -10,6 +10,11 @@ SRC=$(SRC_DIR)/main.cpp \
 OUT_DIR=./build
 OUT=$(OUT_DIR)/main.o
 
+fun:
+	make clean
+	make build
+	make run
+
 build:
 	mkdir -p $(OUT_DIR)
 	$(CXX) $(SRC) -o $(OUT)
@@ -17,10 +22,11 @@ build:
 run:
 	$(OUT)
 
-fun:
-	make clean
-	make build
-	make run
-
 clean:
 	rm -rf $(OUT_DIR)
+
+test:
+	make clean
+	make build
+	echo -e "LDA #$0A\nBRK\n"
+	$(OUT) A9 0A 00
