@@ -9,15 +9,15 @@ namespace Open6502 {
 
 class CPU {
 public:
-  enum Status {
-    CARRY = 0b00000001,
-    ZERO = 0b00000010,
-    INTERRUPT_DISABLED = 0b00000100,
-    DECIMAL = 0b00001000,
-    B_FLAG = 0b00010000,
-    OVERFLOW = 0b00100000,
-    NEGATIVE = 0b01000000,
-  };
+  typedef struct Status {
+    bool carry = false;
+    bool zero = false;
+    bool interrupt_disabled = false;
+    bool decimal = false;
+    bool b_flag = false;
+    bool overflow = false;
+    bool negative = false;
+  } Status;
 
   Stack stack;
   // Registers
