@@ -8,8 +8,7 @@
 namespace Open6502 {
 
 class CPU {
-public:
-  typedef struct Status {
+  struct Status {
     bool carry = false;
     bool zero = false;
     bool interrupt_disabled = false;
@@ -17,12 +16,13 @@ public:
     bool b_flag = false;
     bool overflow = false;
     bool negative = false;
-  } Status;
+  };
 
+public:
   Stack stack;
   uint8_t cycle;
   // Registers
-  Status status;
+  struct Status status;
   uint16_t program_counter;
   uint8_t stack_pointer;
   uint8_t accumulator;
