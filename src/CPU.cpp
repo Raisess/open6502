@@ -2,8 +2,6 @@
 #include "CPU.h"
 #include "Instruction.h"
 
-#define DEBUG 1
-
 Open6502::CPU::CPU(const std::shared_ptr<DataBus>& data_bus)
   : data_bus(data_bus), stack(data_bus) {
   this->reset();
@@ -16,7 +14,7 @@ void Open6502::CPU::reset() {
   this->stack.reset();
   this->cycle = 0;
   this->status.interrupt_disabled = true;
-  this->program_counter = 0x0000;
+  this->program_counter = RESET_VECTOR;
   this->stack_pointer = this->stack.get();
   this->accumulator = 0x00;
   this->x = 0x00;
@@ -44,6 +42,7 @@ void Open6502::CPU::execute() {
 void Open6502::CPU::debug(uint8_t opcode) {
   if (DEBUG) {
     std::cout << std::hex << "---> Opcode: " << unsigned(opcode) << std::endl;
+    std::cout << "CPU->cycle: " << unsigned(this->cycle) << std::endl;
     std::cout << "CPU->program_counter: " << unsigned(this->program_counter) << std::endl;
     std::cout << "CPU->stack_pointer: " << unsigned(this->stack_pointer) << std::endl;
     std::cout << "CPU->accumulator: " << unsigned(this->accumulator) << std::endl;

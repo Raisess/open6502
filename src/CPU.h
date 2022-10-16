@@ -5,6 +5,11 @@
 #include "DataBus.h"
 #include "Stack.h"
 
+#define DEBUG 1
+#define IRQ_VECTOR 0xFFFE
+#define NMI_VECTO 0xFFFA
+#define RESET_VECTOR 0xFFFC
+
 namespace Open6502 {
 
 class CPU {
