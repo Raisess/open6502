@@ -2,6 +2,8 @@
 #include "CPU.h"
 #include "Instruction.h"
 
+#define DEBUG 1
+
 Open6502::CPU::CPU(const std::shared_ptr<DataBus>& data_bus)
   : data_bus(data_bus), stack(data_bus) {
   this->reset();
@@ -34,14 +36,18 @@ void Open6502::CPU::execute() {
 
   const auto opcode = this->data_bus->read(this->program_counter);
   Instruction::Fecth(opcode, this, this->data_bus);
-
-  std::cout << std::hex << "---> Opcode: " << unsigned(opcode) << std::endl;
-  std::cout << "CPU->program_counter: " << unsigned(this->program_counter) << std::endl;
-  std::cout << "CPU->stack_pointer: " << unsigned(this->stack_pointer) << std::endl;
-  std::cout << "CPU->accumulator: " << unsigned(this->accumulator) << std::endl;
-  std::cout << "CPU->x: " << unsigned(this->x) << std::endl;
-  std::cout << "CPU->y: " << unsigned(this->y) << std::endl << std::dec;
-
+  this->debug(opcode);
   this->program_counter++;
   this->execute();
+}
+
+void Open6502::CPU::debug(uint8_t opcode) {
+  if (DEBUG) {
+    std::cout << std::hex << "---> Opcode: " << unsigned(opcode) << std::endl;
+    std::cout << "CPU->program_counter: " << unsigned(this->program_counter) << std::endl;
+    std::cout << "CPU->stack_pointer: " << unsigned(this->stack_pointer) << std::endl;
+    std::cout << "CPU->accumulator: " << unsigned(this->accumulator) << std::endl;
+    std::cout << "CPU->x: " << unsigned(this->x) << std::endl;
+    std::cout << "CPU->y: " << unsigned(this->y) << std::endl << std::dec;
+  }
 }

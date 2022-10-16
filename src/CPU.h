@@ -37,6 +37,8 @@ public:
 
 private:
   std::shared_ptr<DataBus> data_bus = nullptr;
+
+  void debug(uint8_t opcode);
 };
 
 }
