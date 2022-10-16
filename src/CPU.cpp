@@ -22,13 +22,18 @@ void Open6502::CPU::reset() {
 }
 
 void Open6502::CPU::execute() {
-  if (this->program_counter >= MAX_MEMORY_SIZE) {
-    std::cerr << "PROGRAM FINISHED: Max memory address reached" << std::endl;
+  if (this->status.b_flag) {
+    std::cerr << "PROGRAM FINISHED: Break Interrupt" << std::endl;
     exit(1);
   }
 
   if (this->status.overflow) {
     std::cerr << "PROGRAM FINISHED: Stack Overflow" << std::endl;
+    exit(1);
+  }
+
+  if (this->program_counter >= MAX_MEMORY_SIZE) {
+    std::cerr << "PROGRAM FINISHED: Program counter out of bounds" << std::endl;
     exit(1);
   }
 

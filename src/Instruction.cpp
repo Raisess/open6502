@@ -80,8 +80,10 @@ void Open6502::LDA_IMM::execute(CPU* cpu, std::shared_ptr<DataBus> data_bus) {
 
 /* ----------- JUMP OPCODES ---------- */
 
-// TODO: in progress
 void Open6502::BRK::execute(CPU* cpu, std::shared_ptr<DataBus> data_bus) {
   cpu->cycle += ClockCycles;
-  cpu->program_counter = 0xFFFE;
+  cpu->stack.pop();
+  cpu->status.b_flag = true;
+  cpu->status.interrupt_disabled = true;
+  cpu->program_counter = IRQ_VECTOR;
 }

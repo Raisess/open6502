@@ -76,7 +76,7 @@ public:
 class BRK : public Instruction {
 public:
   static const uint8_t Opcode = 0x00;
-  static const uint8_t ClockCycles = 1;
+  static const uint8_t ClockCycles = 7;
   void execute(CPU*, std::shared_ptr<DataBus>) final override;
 };
 
