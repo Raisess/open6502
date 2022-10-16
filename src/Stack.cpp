@@ -1,9 +1,6 @@
 #include <iostream>
 #include "Stack.h"
 
-uint16_t Open6502::Stack::StartAddr = 0x0100;
-uint16_t Open6502::Stack::EndAddr = 0x01FF;
-
 Open6502::Stack::Stack(const std::shared_ptr<DataBus>& data_bus)
   : data_bus(data_bus) {}
 

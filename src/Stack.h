@@ -19,11 +19,11 @@ public:
   uint8_t get() const;
 
 private:
-  static uint16_t StartAddr;
-  static uint16_t EndAddr;
+  static const uint16_t StartAddr = 0x0100;
+  static const uint16_t EndAddr = 0x01FF;
 
   std::shared_ptr<DataBus> data_bus = nullptr;
-  uint16_t index;
+  uint16_t index = StartAddr;
 };
 
 }
