@@ -22,17 +22,26 @@ void Open6502::CPU::reset() {
 
 void Open6502::CPU::execute() {
   if (this->program_counter >= MAX_MEMORY_SIZE) {
-    std::cerr << "MAX MEMORY ADDRESS REACHED: Program Finished" << std::endl;
-    exit(0);
+    std::cerr << "PROGRAM FINISHED: Max memory address reached" << std::endl;
+    exit(1);
   }
 
-  auto opcode = this->data_bus->read(this->program_counter);
+  if (this->status == Status::OVERFLOW) {
+    std::cerr << "PROGRAM FINISHED: Stack Overflow" << std::endl;
+    exit(1);
+  }
 
-  this->program_counter++;
+  const auto opcode = this->data_bus->read(this->program_counter);
   Instruction::Fecth(opcode, this, this->data_bus);
-  std::cout << "CPU status: " << this->status << std::endl;
-  std::cout << "CPU accumulator: " << unsigned(this->accumulator) << std::endl;
-  this->program_counter++;
 
+  std::cout << std::hex << "---> Opcode: " << unsigned(opcode) << std::endl;
+  std::cout << "CPU->program_counter: " << unsigned(this->program_counter) << std::endl;
+  std::cout << "CPU->stack_pointer: " << unsigned(this->stack_pointer) << std::endl;
+  std::cout << "CPU->status: " << this->status << std::endl;
+  std::cout << "CPU->accumulator: " << unsigned(this->accumulator) << std::endl;
+  std::cout << "CPU->x: " << unsigned(this->x) << std::endl;
+  std::cout << "CPU->y: " << unsigned(this->y) << std::endl << std::dec;
+
+  this->program_counter++;
   this->execute();
 }
