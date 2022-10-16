@@ -15,7 +15,6 @@ void Open6502::Stack::reset() {
 
 uint8_t Open6502::Stack::push(uint8_t value) {
   if (this->index == Stack::EndAddr) {
-    std::cerr << "Stack Overflow" << std::endl;
     return 1;
   }
 
