@@ -12,6 +12,7 @@ Open6502::CPU::~CPU() {}
 void Open6502::CPU::reset() {
   this->data_bus->reset();
   this->stack.reset();
+  this->cycle = 0;
   this->status.interrupt_disabled = true;
   this->program_counter = 0x0000;
   this->stack_pointer = this->stack.get();

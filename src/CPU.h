@@ -20,6 +20,7 @@ public:
   } Status;
 
   Stack stack;
+  uint8_t cycle;
   // Registers
   Status status;
   uint16_t program_counter;
