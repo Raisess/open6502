@@ -28,5 +28,5 @@ clean:
 test:
 	make clean
 	make build
-	echo -e "LDA #$0A\nLDX #$05\nBRK\n"
-	$(OUT) A9 0A A2 05 00
+	echo -e "LDA #$0A\nLDX #$05\nORA #$01\nINX\nBRK\n"
+	$(OUT) A9 0A A2 05 09 01 E8 00
