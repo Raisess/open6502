@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <memory>
 #include "DataBus.h"
 #include "Stack.h"
@@ -18,6 +19,8 @@ public:
     NEGATIVE = 0b01000000,
   };
 
+  Stack stack;
+  // Registers
   Status status;
   uint16_t program_counter;
   uint8_t stack_pointer;
@@ -29,10 +32,10 @@ public:
   ~CPU();
 
   void reset();
+  void execute();
 
 private:
   std::shared_ptr<DataBus> data_bus = nullptr;
-  Stack stack;
 };
 
 }
